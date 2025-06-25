@@ -1,0 +1,203 @@
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      height: auto;
+      background: #0f2027;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      position: relative;
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    /* Blobs */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.6;
+      animation: float 10s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    .blob:nth-child(1) {
+      width: 400px;
+      height: 400px;
+      background: #ff5cac;
+      top: -100px;
+      left: -100px;
+    }
+
+    .blob:nth-child(2) {
+      width: 300px;
+      height: 300px;
+      background: #00f0ff;
+      bottom: -80px;
+      right: -80px;
+      animation-delay: 4s;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translate(0, 0);
+      }
+      50% {
+        transform: translate(50px, -50px);
+      }
+    }
+
+    .form-container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(16px);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 40px;
+      width: 100%;
+      max-width: 650px;
+      color: #fff;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp 1s ease;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: #fff;
+      font-weight: 500;
+    }
+
+    .form-group i {
+      position: absolute;
+      top: 69%;
+      left: 15px;
+      transform: translateY(-50%);
+      color: #ffffffcc;
+      font-size: 16px;
+      pointer-events: none;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 18px 12px 45px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      color: #fff;
+      border-radius: 12px;
+      font-size: 15px;
+      transition: all 0.3s ease;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: #00ffd5;
+      box-shadow: 0 0 15px #00ffd59a;
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+    }
+
+    #genre option {
+      background: #00000081;
+      color: white;
+    }
+
+    .btn {
+      width: 100%;
+      background: linear-gradient(to right, #00c9ff, #92fe9d);
+      padding: 14px;
+      font-size: 16px;
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0, 201, 255, 0.4);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* One-line Book Cover Input Styling */
+    .image-upload-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .input-with-preview {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      position: relative;
+      margin-top: 8px;
+    }
+
+    .input-with-preview i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #ffffffcc;
+      font-size: 16px;
+      pointer-events: none;
+    }
+
+    .input-with-preview input[type="file"] {
+      padding-left: 45px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      color: #fff;
+      border-radius: 12px;
+      font-size: 15px;
+      transition: all 0.3s ease;
+      outline: none;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .input-with-preview img {
+      height: 60px;
+      width: 60px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 2px solid #fff;
+    }

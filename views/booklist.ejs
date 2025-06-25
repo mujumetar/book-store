@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Book Card - Clean Layout</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/booklist.css">
+</head>
+
+<body>
+
+  <h1>Manage Book Collection</h1>
+  <div class="search-bar">
+
+    <form id="formdata" action="" method="">
+      <div class="search-box">
+        <input id="searchdata" type="text" name="search" placeholder="🔍 Search by title, author, or genre..."
+          value="<%= typeof search !== 'undefined' ? search : '' %>">
+        <button type="submit"><i class="fas fa-search"></i></button>
+      </div>
+    </form>
+
+
+  </div>
+  <a href="/addbook" class="add-btn"><i class="fas fa-plus"></i> Add Book</a>
+  <div class="card-container">
+    <% books.forEach(book=> { %>
+      <div class="card" data-title="<%= book.title.toLowerCase() %>" data-author="<%= book.author.toLowerCase() %>"
+        data-genre="<%= book.genre.toLowerCase() %>">
+
+
+        <div class="card-content">
+          <img src="<%= book.image %>" alt="Book Image">
+          <h2>
+            <%= book.title %>
+          </h2>
+          <div class="info-grid">
+            <div class="info-item"><i class="fas fa-user"></i>
+              <%= book.author %>
+            </div>
+            <div class="info-item"><i class="fas fa-barcode"></i>
+              <%= book.isbn %>
+            </div>
+            <div class="info-item"><i class="fas fa-dollar-sign"></i>$<%= book.price %>
+            </div>
+            <div class="info-item"><i class="fas fa-box"></i>
+              <%= book.quantity> 0 ? book.quantity + " pcs" : "Out of stock" %>
+            </div>
+            <div class="info-item"><i class="fas fa-book-open"></i>
+              <%= book.genre %>
+            </div>
+          </div>
+          <div class="buttons">
+            <button class="edit-btn" onclick="location.href='/editbook?id=<%= book._id %>'">Edit</button>
+            <button class="delete-btn"
+              onclick="if(confirm('Are you sure?')) location.href='/deleteBook?id=<%= book._id %>'">Delete</button>
+          </div>
+        </div>
+      </div>
+      <% }); %>
+  </div>
+
+
+  <script>
+    const formdata = document.getElementById('formdata');
+    const searchInput = document.getElementById('searchdata');
+    const cards = document.querySelectorAll('.card');
+
+    formdata.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const keyword = searchInput.value.toLowerCase().trim();
+
+      cards.forEach(card => {
+        const title = card.dataset.title || '';
+        const author = card.dataset.author || '';
+        const genre = card.dataset.genre || '';
+
+        if (title.includes(keyword) || author.includes(keyword) || genre.includes(keyword)) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    });
+  </script>
+
+</body>
+
+</html>

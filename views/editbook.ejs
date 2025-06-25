@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edit Book</title>
+
+  <!-- Google Font & Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/editbook.css">
+</head>
+<body>
+
+  <!-- Blobs -->
+  <div class="blob"></div>
+  <div class="blob"></div>
+
+  <div class="form-container">
+    <h2><i class="fa-solid fa-book"></i> Edit Book</h2>
+    <form action="/editbook?id=<%= book._id %>" method="POST" enctype="multipart/form-data">
+
+      <div class="form-group">
+        <label for="title">Title</label>
+        <i class="fa-solid fa-heading"></i>
+        <input type="text" id="title" name="title" value="<%= book.title %>" required />
+      </div>
+
+      <div class="form-group">
+        <label for="author">Author</label>
+        <i class="fa-solid fa-user-pen"></i>
+        <input type="text" id="author" name="author" value="<%= book.author %>" required />
+      </div>
+
+      <div class="form-group">
+        <label for="isbn">ISBN</label>
+        <i class="fa-solid fa-barcode"></i>
+        <input type="text" id="isbn" name="isbn" value="<%= book.isbn %>" required />
+      </div>
+
+      <div class="form-group">
+        <label for="price">Price</label>
+        <i class="fa-solid fa-tag"></i>
+        <input type="number" id="price" name="price" value="<%= book.price %>" step="0.01" required />
+      </div>
+
+      <div class="form-group">
+        <label for="quantity">Quantity</label>
+        <i class="fa-solid fa-boxes-stacked"></i>
+        <input type="number" id="quantity" name="quantity" value="<%= book.quantity %>" required />
+      </div>
+
+      <div class="form-group">
+        <label for="genre">Genre</label>
+        <i class="fa-solid fa-bookmark"></i>
+        <select id="genre" name="genre" required>
+          <option value="Fiction" <%= book.genre === 'Fiction' ? 'selected' : '' %>>Fiction</option>
+          <option value="Non-Fiction" <%= book.genre === 'Non-Fiction' ? 'selected' : '' %>>Non-Fiction</option>
+          <option value="Science Fiction" <%= book.genre === 'Science Fiction' ? 'selected' : '' %>>Science Fiction</option>
+          <option value="Fantasy" <%= book.genre === 'Fantasy' ? 'selected' : '' %>>Fantasy</option>
+          <option value="Mystery" <%= book.genre === 'Mystery' ? 'selected' : '' %>>Mystery</option>
+          <option value="Romance" <%= book.genre === 'Romance' ? 'selected' : '' %>>Romance</option>
+          <option value="Biography" <%= book.genre === 'Biography' ? 'selected' : '' %>>Biography</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="publishedDate">Published Date</label>
+        <i class="fa-solid fa-calendar-days"></i>
+        <input type="date" id="publishedDate" name="publishedDate"
+               value="<%= new Date(book.publishedDate).toISOString().split('T')[0] %>" required />
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <i class="fa-solid fa-align-left"></i>
+        <textarea id="description" name="description" rows="4"><%= book.description %></textarea>
+      </div>
+
+      <div class="form-group image-upload-group">
+        <label for="coverImage">Book Cover</label>
+        <div class="input-with-preview">
+          <i class="fa-solid fa-image"></i>
+          <input type="file" id="image" name="image" />
+          <img src="<%= book.image %>" alt="Book Cover">
+        </div>
+      </div>
+
+      <button class="btn" type="submit"><i class="fa-solid fa-floppy-disk"></i> Update Book</button>
+    </form>
+  </div>
+
+
+</body>
+</html>
